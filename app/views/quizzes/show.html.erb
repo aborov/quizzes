@@ -17,7 +17,9 @@
 <dl>
   <% @quiz.messages.each do |message| %>
     <dt><%= message.role %></dt>
-    <dd><p><%= message.content %></p></dd>
+    <dd>
+      <p><%= message.content %></p>
+    </dd>
   <% end %>
 </dl>
 
@@ -26,10 +28,11 @@
   <dt>user</dt>
   <dd>
     <%= form_with model: [@quiz, Message.new] do |form| %>
-  <div>
-    <%= form.text_area :content, placeholder: "Enter your response...", cols: 80, rows: 10 %>
-  </div>
-  <%= form.submit "Add message" %>
-<% end %>
+      <%= form.hidden_field :role, value: "user" %>
+      <div>
+        <%= form.text_area :content, placeholder: "Enter your response...", cols: 80, rows: 10 %>
+      </div>
+      <%= form.submit "Add message" %>
+    <% end %>
   </dd>
 </dl>

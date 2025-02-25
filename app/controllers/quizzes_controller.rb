@@ -21,7 +21,7 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.create(topic: params[:query_topic])
 
     # Add system message
-    @quiz.messages.create(role: "system", content: "You are an AI tutor. Ask the user five questions to assess their proficiency on this topic. Start with an easy question and adjust difficulty based on responses. Provide a score between 0 and 10 at the end.")
+    @quiz.messages.create(role: "system", content: "You are a #{@quiz.topic} tutor. Ask the user five questions to assess their proficiency in #{@quiz.topic}. Start with an easy question and adjust difficulty based on responses. Provide a score between 0 and 10 at the end.")
 
     # Add user message
     user_message = @quiz.messages.create(role: "user", content: "Can you assess my proficiency in #{@quiz.topic}?")
