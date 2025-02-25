@@ -1,0 +1,35 @@
+<h1>Quiz #<%= @quiz.id %> details</h1>
+
+<div>
+  <a href="/quizzes">Go back</a>
+</div>
+
+<dl>
+  <dt>Topic</dt>
+  <dd><%= @quiz.topic %></dd>
+
+  <dt>Created at</dt>
+  <dd><%= time_ago_in_words(@quiz.created_at) %> ago</dd>
+</dl>
+
+<hr>
+
+<dl>
+  <% @quiz.messages.each do |message| %>
+    <dt><%= message.role %></dt>
+    <dd><p><%= message.content %></p></dd>
+  <% end %>
+</dl>
+
+<!-- Form to add a new message -->
+<dl>
+  <dt>user</dt>
+  <dd>
+    <%= form_with model: [@quiz, Message.new] do |form| %>
+  <div>
+    <%= form.text_area :content, placeholder: "Enter your response...", cols: 80, rows: 10 %>
+  </div>
+  <%= form.submit "Add message" %>
+<% end %>
+  </dd>
+</dl>

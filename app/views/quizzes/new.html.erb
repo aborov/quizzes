@@ -1,0 +1,11 @@
+<h1>Quizzes</h1>
+
+<ul>
+  <% @quizzes.each do |quiz| %>
+    <li>
+      <a href="<%= quiz_path(quiz) %>">Quiz #<%= quiz.id %> - <%= quiz.topic %></a>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create New Quiz", new_quiz_path %>

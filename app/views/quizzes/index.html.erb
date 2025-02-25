@@ -1,0 +1,50 @@
+<% content_for :title, "Quizzes" %>
+
+<div>
+  <h1>List of all quizzes</h1>
+
+  <div>
+    <div>
+      <h2>
+        Add a new quiz
+      </h2>
+
+      <form action="/insert_quiz" method="post">
+        <div>
+          <label for="topic_box">
+            Topic
+          </label>
+
+          <input type="text" id="topic_box" name="query_topic">
+        </div>
+
+        <button>
+          Create quiz
+        </button>
+      </form>
+    </div>
+  </div>
+<hr>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Topic</th>
+        <th>Created At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @quizzes.each do |quiz| %>
+        <tr>
+          <td><%= quiz.id %></td>
+          <td><%= quiz.topic %></td>
+          <td><%= time_ago_in_words(quiz.created_at) %> ago</td>
+          <td>
+            <a href="<%= quiz_path(quiz) %>">View</a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
